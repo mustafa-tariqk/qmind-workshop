@@ -47,15 +47,19 @@ contract Auction {
         returns (bool success)
     {
         // reject payments of 0 ETH
+        if ;
 
         // calculate the user's total bid based on the current amount they've sent to the contract
         // plus whatever has been sent with this transaction
+        uint ;
 
         // if the user isn't even willing to overbid the highest binding bid, there's nothing for us
         // to do except revert the transaction.
+        if ;
 
         // grab the previous highest bid (before updating fundsByBidder, in case msg.sender is the
         // highestBidder and is just increasing their maximum bid).
+        uint ;
 
         fundsByBidder[msg.sender] = newBid;
 
@@ -66,6 +70,7 @@ contract Auction {
             // note that this case is impossible if msg.sender == highestBidder because you can never
             // bid less ETH than you've already bid.
 
+            highestBindingBid ;
         } else {
             // if msg.sender is already the highest bidder, they must simply be wanting to raise
             // their maximum bid, in which case we shouldn't increase the highestBindingBid.
@@ -73,6 +78,11 @@ contract Auction {
             // if the user is NOT highestBidder, and has overbid highestBid completely, we set them
             // as the new highestBidder and recalculate highestBindingBid.
 
+            if (msg.sender != highestBidder) {
+                highestBidder ;
+                highestBindingBid ;
+            }
+            highestBid ;
         }
 
         LogBid(msg.sender, newBid, highestBidder, highestBid, highestBindingBid);
@@ -108,26 +118,33 @@ contract Auction {
 
         if (canceled) {
             // if the auction was canceled, everyone should simply be allowed to withdraw their funds
+            withdrawalAccount ;
+            withdrawalAmount ;
 
         } else {
             // the auction finished without being canceled
 
             if (msg.sender == owner) {
                 // the auction's owner should be allowed to withdraw the highestBindingBid
+                withdrawalAccount ;
+                withdrawalAmount ;
+                ownerHasWithdrawn ;
 
             } else if (msg.sender == highestBidder) {
                 // the highest bidder should only be allowed to withdraw the difference between their
                 // highest bid and the highestBindingBid
                 withdrawalAccount = highestBidder;
                 if (ownerHasWithdrawn) {
-                
+                    withdrawalAmount ;
                 } else {
-                    
+                    withdrawalAmount ;
                 }
 
             } else {
                 // anyone who participated but did not win the auction should be allowed to withdraw
                 // the full amount of their funds
+                withdrawalAccount ;
+                withdrawalAmount ;
             }
         }
 
