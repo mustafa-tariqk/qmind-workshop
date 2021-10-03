@@ -52,7 +52,6 @@ contract Crowdfunding {
 
 
 contract Project {
-    using SafeMath for uint256;
     
     // Data structures
     enum State {
