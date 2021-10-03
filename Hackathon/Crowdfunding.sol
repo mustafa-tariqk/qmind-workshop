@@ -3,7 +3,6 @@ pragma solidity 0.5.4;
 
 
 contract Crowdfunding {
-    using SafeMath for uint256;
 
     // List of existing projects
     Project[] private projects;
